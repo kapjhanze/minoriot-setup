@@ -1,6 +1,6 @@
 # Minor IoT - Setup
 
-Use the Azure IoT environment to receive temperature and humidity measurements from a BME280 sensor connected to a Raspberry Pi device. All written in Python and easy to use. 
+Use the Azure IoT environment to receive temperature and humidity measurements from a BME280 sensor connected to a Raspberry Pi device. All written in Python and easy to use. Many thanks to Jorian Woltjer en Aji Rajadurai (SCMI) for writting this new script! 
 
 ## Example
 
