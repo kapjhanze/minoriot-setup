@@ -52,7 +52,7 @@ When the image is fully written to the Raspberry Pi, you can connect the it via 
 When you have an IP address, you can use the SSH command to connect to it, using the credentials you set in step 1. In this case the username is to `pi`, and the password to `raspberry`, so the command would become the following:
 
 ```Shell
-$ ssh pi@192.168.137.216
+ssh pi@192.168.137.216
 Password: raspberry
 ```
 
@@ -63,8 +63,8 @@ Once you're connected to the Pi via SSH, you can begin to install this repositor
 To get everything up and running on the Raspberry PI, you can use the following commands on the Pi to install this repository:
 
 ```Shell
-$ git clone https://github.com/kapjhanze/minoriot-setup.git && cd minoriot-setup
-$ sudo ./setup.sh
+git clone https://github.com/kapjhanze/minoriot-setup.git && cd minoriot-setup
+sudo bash setup.sh
 ```
 
 This [`setup.sh`](setup.sh) script should install all the necessary dependencies and settings. Reboot after the installation to make sure everything is reloaded. 
@@ -79,7 +79,7 @@ Log in to the [Azure Portal](https://portal.azure.com/) and navigate to the IoT 
 HostName=iothub.azure-devices.net;DeviceId=raspberry;SharedAccessKey=VGhpcyBpcyBub3QgYWN0dWFsbHkgYSBrZXkgOik=
 ```
 
-The Azure Connection String can be added to the [`config.py`](config.py) file or can be used as an argument when running `./app.py`.
+The Azure Connection String can be added to the [`config.py`](config.py) file or can be used as an argument when running `python3 app.py`.
 
 ### Step 5: Connecting the BME280 sensor to the Raspberry Pi
 
@@ -93,7 +93,7 @@ The BME280 sensor will likely have four pins labeled `VIN` (5V), `GND`, `SCL` (S
 After the BME280 sensor is connected, you should be able to see the address `76` using the tool install when you ran `setup.sh`:
 
 ```Shell
-$ i2cdetect -y 1
+i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:                         -- -- -- -- -- -- -- -- 
 10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
