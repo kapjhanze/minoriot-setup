@@ -8,6 +8,7 @@ cd "$parent_path"
 GREEN="\033[1;32m"
 CYAN="\033[1;36m"
 RED="\033[1;31m"
+YELLOW="\033[1;33m"
 RESET="\033[0m"
 
 info() {
@@ -20,6 +21,10 @@ success() {
 
 error() {
     echo -e "${RED}[!]${RESET} $1"
+}
+
+ask() {
+    echo -n -e "${YELLOW}[?]${RESET} $1 "
 }
 
 if grep -q "SETUP_COMPLETED = False" config.py; then
@@ -61,7 +66,7 @@ if grep -q "SETUP_COMPLETED = False" config.py; then
     
     #Install Python requirements
     info "Installing required Python libraries."
-    pip3 install -r requirements.txt
+    python3 -m pip install -r requirements.txt --break-system-packages
     
     # Set completed to True
     sed -i "s/SETUP_COMPLETED = False/SETUP_COMPLETED = True/" config.py
@@ -70,14 +75,13 @@ if grep -q "SETUP_COMPLETED = False" config.py; then
     info "A reboot is required for the actions to take effect."
 
     # Ask for reboot
-    info "Do you want to reboot now? [y/n]"
+    ask "Do you want to reboot now? [y/N]"
     read askReboot
     if [ $askReboot = "y" ]; then
         reboot
-    else :
+        exit 0
     fi
 fi
 
 info "You should see a 76 in the following table if the BME is connected correctly:"
-
 i2cdetect -y 1
